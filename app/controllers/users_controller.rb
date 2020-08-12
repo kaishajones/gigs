@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # this is required because we are dealing with rails API
   skip_before_action :verify_authenticity_token
-
+  before_action :authorize_request, except: %i[create login]
   # allows us to create a new user and return the data as JSON
   # the create end point will be used for the register component on the client side
   def create
@@ -20,6 +20,15 @@ class UsersController < ApplicationController
     }
   end
 
+  def show
+    render json: @current_user, status: :ok
+  end
+
+  def update
+    if @current_user.update(user_params)
+      render json: @current_user, status: :ok
+    end
+  end
 
   private 
   def user_params

@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :articles
+  has_many :comments, dependent: :destroy
+  
   # manage secure password
   # rails helper method
   has_secure_password 
