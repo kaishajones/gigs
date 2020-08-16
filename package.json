@@ -1,15 +1,23 @@
 {
   "name": "gigs",
   "private": true,
+  "engines": {
+  "node": "12.16.1"
+  },
+  "scripts": {
+  "build": "cd client && yarn install && yarn run build && cd ..",
+  "deploy": "cp -a client/build/. public/",
+  "postinstall": "yarn run build && yarn run deploy && echo 'Client built!'"
+  },
   "dependencies": {
-    "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
-    "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "4.2.2",
-    "turbolinks": "^5.2.0"
+  "@rails/actioncable": "^6.0.0",
+  "@rails/activestorage": "^6.0.0",
+  "@rails/ujs": "^6.0.0",
+  "@rails/webpacker": "4.2.2",
+  "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.11.0"
+  "webpack-dev-server": "^3.11.0"
   }
-}
+  }
